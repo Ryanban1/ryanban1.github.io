@@ -1,3 +1,6 @@
 dist/
 node_modules/
 .DS_Store
+# The resume has a phone number on it. Keep it out of this public repo until a
+# version without the phone line exists (see README.md), then delete this line.
+static/resume.pdf
