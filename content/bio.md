@@ -1,20 +1,25 @@
 ---
-name: "Ryan [Last Name]"
-headline: "Computer Engineering Student at [University]"
-location: "[City, State]"
-graduation: "[Month Year]"
-seeking: "[Internship / full-time] roles in [embedded systems, hardware design, firmware, software]"
-email: "[you@example.com]"
-github: "https://github.com/[username]"
-linkedin: "https://www.linkedin.com/in/[username]"
+name: "Ryan Banerjee"
+headline: "Computer Engineering student at UC Santa Barbara"
+school: "University of California, Santa Barbara"
+degree: "B.S. in Computer Engineering"
+graduation: "June 2030"
+location: "Dublin, CA"
+seeking: "internships in embedded systems, computer architecture and hardware engineering"
+interests: ["Embedded systems", "VLSI design", "Computer architecture"]
+email: "ryan.banerjee08@gmail.com"
+github: "https://github.com/Ryanban1"
+linkedin: "https://www.linkedin.com/in/ryan-banerjee"
 resume: "/resume.pdf"
 photo: "/images/headshot.jpg"
 ---
 
-## Short bio (home page, 1 to 2 sentences)
+## Short bio
 
-I'm a computer engineering student at [University] who builds [kind of systems, e.g. embedded devices and the software that runs them]. I'm looking for [role type] opportunities starting [Month Year].
+I led a team of five that built a Raspberry Pi and OpenCV theft-deterrent device, designed and fabricated the robot's end effector for FIRST Robotics Team 7419, and built a machine-learning model that detects diabetes with 84%+ accuracy as an AWS intern.
 
-## About (about page, one short paragraph)
+## About
 
-I'm a [year] computer engineering student at [University], graduating in [Month Year]. I like working where hardware meets software, from [example: designing PCBs and writing firmware] to [example: building tools that make that hardware usable]. Recently I've been [current project or interest]. Outside of class I [club, team, hobby, or leadership role]. I'm currently looking for [internship / full-time] roles in [areas].
+I'm studying computer engineering at UC Santa Barbara and expect to graduate in June 2030. My current courses cover C++ programming, computer architecture and circuit theory, and I'm most interested in embedded systems, VLSI design and computer architecture.
+
+Outside of engineering I play badminton and volunteer in my community.
