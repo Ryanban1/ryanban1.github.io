@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — [Your Name]</title>
+  <meta name="description" content="[Your Name] — [Discipline] engineering portfolio." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <nav>
+    <div class="wrap">
+      <a href="index.html" class="logo">[Your Name]</a>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html" class="active" aria-current="page">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <section id="contact">
+      <div class="wrap">
+        <p class="eyebrow">Contact</p>
+        <h2>Let's work together</h2>
+        <p>[I'm currently looking for [role type] starting [date]. The best way to reach me is email.]</p>
+        <div class="actions">
+          <a class="btn primary" href="mailto:[you@email.com]">[you@email.com]</a>
+          <a class="btn" href="[https://linkedin.com/in/your-handle]" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="[https://github.com/your-handle]" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn" href="[resume.pdf]" download>Resume (PDF)</a>
+        </div>
+        <div class="contact-cards">
+          <div class="card"><div class="label">Email</div><div class="value"><a href="mailto:[you@email.com]">[you@email.com]</a></div></div>
+          <div class="card"><div class="label">Phone</div><div class="value">[(555) 555-5555 — optional]</div></div>
+          <div class="card"><div class="label">LinkedIn</div><div class="value"><a href="[https://linkedin.com/in/your-handle]" target="_blank" rel="noopener">[linkedin.com/in/your-handle]</a></div></div>
+          <div class="card"><div class="label">GitHub</div><div class="value"><a href="[https://github.com/your-handle]" target="_blank" rel="noopener">[github.com/your-handle]</a></div></div>
+          <div class="card"><div class="label">Location</div><div class="value">[City, State]</div></div>
+          <div class="card"><div class="label">Availability</div><div class="value">[Open to full-time roles from Month YYYY]</div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© <span id="year"></span> [Your Name]</span>
+      <a href="#top" onclick="window.scrollTo({top:0});return false;">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-label="Image preview"><img alt="" /></div>
+  <script src="script.js"></script>
+</body>
+</html>

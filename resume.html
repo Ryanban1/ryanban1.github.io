@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume — Ryan Banerjee</title>
+  <meta name="description" content="Ryan Banerjee — Computer engineering portfolio." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <nav>
+    <div class="wrap">
+      <a href="index.html" class="logo">Ryan Banerjee</a>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="resume.html" class="active" aria-current="page">Resume</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <section id="resume">
+      <div class="wrap">
+        <div class="resume-head">
+          <div>
+            <p class="eyebrow">Resume</p>
+            <h2>Experience &amp; education</h2>
+          </div>
+          <!-- Put your PDF in the repo (e.g. resume.pdf) and point this link at it -->
+          <a class="btn primary" href="Ryan_Banerjee_Resume.pdf" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M5 21h14"/></svg>
+            Download PDF
+          </a>
+        </div>
+
+        <div class="resume-grid">
+          <div>
+            <h4>Experience</h4>
+            <ol class="timeline">
+              <li>
+                <span class="when">Jul 2026 – Jul 2026</span>
+                <h3>High school Extern</h3>
+                <div class="org">Cisco · New York City, NY</div>
+                <ul>
+                  <li>Built a pitch deck mapping Cisco products and services to Taco Bell’s <strong>AI voice-ordering drive-thrus</strong> and <strong>inventory tracking</strong>, projecting <strong>$15M+ in annual savings</strong></li>
+                  <li>Studied Cisco’s technology stack, product portfolio, marketing, and finances through sessions with Cisco teams</li>
+                </ul>
+              </li>
+              <li>
+                <span class="when">Aug 2022 – Jun 2026</span>
+                <h3>Hardware &amp; Business member → Business Lead → Mentor</h3>
+                <div class="org">FIRST Robotics Competition Team 7419 · Dublin, CA</div>
+                <ul>
+                  <li>Designed the robot’s <strong>end effector</strong> in <strong>OnShape</strong> and fabricated it using <strong>machine shop equipment</strong></li>
+                  <li>Led the 15-member Business department on a <strong>100+ member</strong> team, overseeing <strong>1,000+ hours of community outreach</strong></li>
+                  <li>Raised <strong>$10K+</strong> of the team’s <strong>$70K</strong> in grants and sponsorships, including a <strong>NASA sponsorship</strong></li>
+                  <li>Won the <strong>FIRST Engineering Inspiration Award</strong>, qualifying the team for the 2024 <strong>World Championship</strong></li>
+                </ul>
+              </li>
+              <li>
+                <span class="when">Mar 2025 – Apr 2025</span>
+                <h3>Machine Learning Student Intern</h3>
+                <div class="org">AWS · Remote</div>
+                <ul>
+                  <li>Built a machine learning model that detects diabetes with <strong>84%+</strong> accuracy using AWS SageMaker, S3, and EC2</li>
+                  <li>Team was 1 of 6 out of 12 selected to present results to Amazon executives</li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+
+          <div>
+            <h4>Education</h4>
+            <div class="card">
+              <div class="row">
+                <div>
+                  <h3>B.S. in Computer Engineering</h3>
+                  <div class="muted">University of California, Santa Barbara</div>
+                  <div class="muted" style="font-size:.9rem">GPA: X.XX</div>
+                </div>
+                <span class="when">2030</span>
+              </div>
+              <div class="row">
+                <div>
+                  <div style="font-size:.9rem"><strong>Relevant coursework:</strong> Problem Solving with Computers I, Introduction to Electrical & Computer Engineering, Linear Algebra with Applications</div>
+                </div>
+              </div>
+            </div>
+
+            <h4 style="margin-top:32px">Awards</h4>
+            <div class="card">
+              <div class="row"><div>FIRST Engineering Inspiration Award</div><span class="when">2024</span></div>
+              <div class="row"><div>Mayor’s Certificate of Appreciation</div><span class="when">2024</span></div>
+              <div class="row"><div>Varsity Badminton, NorCal D2 Champs</div><span class="when">2025</span></div>
+            </div>
+
+            <h4 style="margin-top:32px">Activities &amp; programs</h4>
+            <div class="card">
+              <div class="row"><div>Wharton Management & Technology Summer Institute</div><span class="when">2025</span></div>
+              <div class="row"><div>UC Berkeley Haas Business Academy for Youth</div><span class="when">2024</span></div>
+              <div class="row"><div>Founder & Teacher, Essentials of Entrepreneurship</div><span class="when">2025-2026</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© <span id="year"></span> Ryan Banerjee</span>
+      <a href="#top" onclick="window.scrollTo({top:0});return false;">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-label="Image preview"><img alt="" /></div>
+  <script src="script.js"></script>
+</body>
+</html>

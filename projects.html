@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects — [Your Name]</title>
+  <meta name="description" content="[Your Name] — [Discipline] engineering portfolio." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <nav>
+    <div class="wrap">
+      <a href="index.html" class="logo">[Your Name]</a>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="projects.html" class="active" aria-current="page">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <section id="projects">
+      <div class="wrap">
+        <p class="eyebrow">Projects</p>
+        <h2>Selected work</h2>
+
+        <div class="project-grid">
+          <a class="project-card" href="#project-1">
+            <figure class="media ratio-4x3"><div class="ph" data-label="Project 1 thumbnail"></div></figure>
+            <h3>[Project 1 Title]</h3>
+            <span class="when">[Mon YYYY – Mon YYYY]</span>
+            <div class="chips" style="margin-top:10px"><span class="chip accent">[Capstone]</span><span class="chip">[CAD]</span><span class="chip">[FEA]</span></div>
+          </a>
+          <a class="project-card" href="#project-2">
+            <figure class="media ratio-4x3"><div class="ph" data-label="Project 2 thumbnail"></div></figure>
+            <h3>[Project 2 Title]</h3>
+            <span class="when">[Mon YYYY – Mon YYYY]</span>
+            <div class="chips" style="margin-top:10px"><span class="chip accent">[Personal]</span><span class="chip">[Electronics]</span><span class="chip">[Code]</span></div>
+          </a>
+          <a class="project-card" href="#project-3">
+            <figure class="media ratio-4x3"><div class="ph" data-label="Project 3 thumbnail"></div></figure>
+            <h3>[Project 3 Title]</h3>
+            <span class="when">[Mon YYYY – Mon YYYY]</span>
+            <div class="chips" style="margin-top:10px"><span class="chip accent">[Internship]</span><span class="chip">[Tooling]</span><span class="chip">[DFM]</span></div>
+          </a>
+        </div>
+
+        <!-- =====================================================
+             PROJECT 1  (copy this whole <article> to add a project)
+             ===================================================== -->
+        <article class="project" id="project-1">
+          <div class="project-title">
+            <div>
+              <p class="eyebrow">Project 01 · [Capstone / Team of N]</p>
+              <h2>[Project 1 Title]</h2>
+            </div>
+            <span class="when">[Mon YYYY – Mon YYYY] · [N weeks/months]</span>
+          </div>
+
+          <figure class="media ratio-16x9 project-hero">
+            <div class="ph" data-label="Hero image: final prototype or CAD render — 16:9"></div>
+          </figure>
+
+          <div class="project-layout">
+            <aside class="project-meta">
+              <dl>
+                <div><dt>My role</dt><dd>[e.g. Mechanical lead]</dd></div>
+                <div><dt>Team</dt><dd>[N engineers · Sponsor/Advisor]</dd></div>
+                <div><dt>Timeframe</dt><dd>[Mon YYYY – Mon YYYY]</dd></div>
+                <div><dt>Tools</dt><dd><div class="chips"><span class="chip">[SolidWorks]</span><span class="chip">[ANSYS]</span><span class="chip">[MATLAB]</span></div></dd></div>
+              </dl>
+            </aside>
+
+            <div class="project-body">
+              <div class="block">
+                <h3><span class="num">01</span> My role &amp; contribution</h3>
+                <p>[State clearly what <em>you</em> did vs. the team. e.g. "I owned the drivetrain subsystem: designed the gearbox in SolidWorks, ran the FEA on the output shaft, and machined the housing."]</p>
+                <ul style="padding-left:18px;margin-top:10px">
+                  <li>[Specific contribution]</li>
+                  <li>[Specific contribution]</li>
+                  <li>[Specific contribution]</li>
+                </ul>
+              </div>
+
+              <div class="block">
+                <h3><span class="num">02</span> Problem &amp; constraints</h3>
+                <p>[What problem were you solving, for whom, and why did it matter?]</p>
+                <div class="constraints">
+                  <div><strong>Requirement</strong>[e.g. Lift 5 kg payload to 1 m]</div>
+                  <div><strong>Budget</strong>[e.g. Under $500]</div>
+                  <div><strong>Size / weight</strong>[e.g. Fit in 300 × 300 mm envelope]</div>
+                  <div><strong>Other limitation</strong>[e.g. 10-week schedule, off-the-shelf motors only]</div>
+                </div>
+              </div>
+
+              <div class="block">
+                <h3><span class="num">03</span> Process &amp; technical details</h3>
+                <p>[Short overview of your approach.]</p>
+                <ol class="steps">
+                  <li><strong>[Research &amp; concepts]</strong> — [How you generated and compared options, e.g. decision matrix.]</li>
+                  <li><strong>[Design]</strong> — [CAD modeling, key design choices and why.]</li>
+                  <li><strong>[Analysis]</strong> — [Hand calcs, FEA, simulation; what you checked and what you found.]</li>
+                  <li><strong>[Build &amp; test]</strong> — [Fabrication, test setup, iterations.]</li>
+                </ol>
+                <div class="gallery">
+                  <figure>
+                    <div class="media ratio-4x3"><div class="ph" data-label="CAD model / assembly"></div></div>
+                    <figcaption>[Caption: what this shows]</figcaption>
+                  </figure>
+                  <figure>
+                    <div class="media ratio-4x3"><div class="ph" data-label="FEA stress plot"></div></div>
+                    <figcaption>[Caption: e.g. Max von Mises 120 MPa, FoS 2.1]</figcaption>
+                  </figure>
+                  <figure class="wide">
+                    <div class="media ratio-16x9"><div class="ph" data-label="Engineering drawing, schematic, or exploded view — 16:9"></div></div>
+                    <figcaption>[Caption]</figcaption>
+                  </figure>
+                </div>
+                <p class="code-label">// [Key calculation or code snippet — optional]</p>
+<pre><span class="c"># [Replace with a short, meaningful calc or code excerpt]</span>
+torque_req = load_N * radius_m          <span class="c"># [N·m]</span>
+safety_factor = yield_MPa / max_stress  <span class="c"># [target ≥ 2.0]</span></pre>
+              </div>
+
+              <div class="block">
+                <h3><span class="num">04</span> Results &amp; impact</h3>
+                <div class="metrics">
+                  <div class="metric"><div class="big">[−30%]</div><div class="label">[Weight vs. previous design]</div></div>
+                  <div class="metric"><div class="big">[$420]</div><div class="label">[Total cost, under $500 budget]</div></div>
+                  <div class="metric"><div class="big">[2.1]</div><div class="label">[Min. factor of safety]</div></div>
+                </div>
+                <figure class="media ratio-16x9">
+                  <div class="ph" data-label="Video demo of working prototype — 16:9"></div>
+                </figure>
+                <p style="margin-top:16px">[What happened in the end — did it work, win, ship, or get adopted? What would you do differently?]</p>
+                <div class="project-links">
+                  <a class="btn" href="[#]">[Final report (PDF)]</a>
+                  <a class="btn" href="[#]">[GitHub repo]</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- =====================================================
+             PROJECT 2
+             ===================================================== -->
+        <article class="project" id="project-2">
+          <div class="project-title">
+            <div>
+              <p class="eyebrow">Project 02 · [Personal / Solo]</p>
+              <h2>[Project 2 Title]</h2>
+            </div>
+            <span class="when">[Mon YYYY – Mon YYYY]</span>
+          </div>
+
+          <figure class="media ratio-16x9 project-hero">
+            <div class="ph" data-label="Hero image — 16:9"></div>
+          </figure>
+
+          <div class="project-layout">
+            <aside class="project-meta">
+              <dl>
+                <div><dt>My role</dt><dd>[Solo — design, build, code]</dd></div>
+                <div><dt>Timeframe</dt><dd>[Mon YYYY – Mon YYYY]</dd></div>
+                <div><dt>Tools</dt><dd><div class="chips"><span class="chip">[KiCad]</span><span class="chip">[C++]</span><span class="chip">[Fusion 360]</span></div></dd></div>
+              </dl>
+            </aside>
+
+            <div class="project-body">
+              <div class="block">
+                <h3><span class="num">01</span> My role &amp; contribution</h3>
+                <p>[What you did.]</p>
+              </div>
+
+              <div class="block">
+                <h3><span class="num">02</span> Problem &amp; constraints</h3>
+                <p>[The challenge.]</p>
+                <div class="constraints">
+                  <div><strong>Requirement</strong>[Requirement]</div>
+                  <div><strong>Constraint</strong>[Constraint]</div>
+                </div>
+              </div>
+
+              <div class="block">
+                <h3><span class="num">03</span> Process &amp; technical details</h3>
+                <p>[How you solved it.]</p>
+                <div class="gallery">
+                  <figure>
+                    <div class="media ratio-4x3"><div class="ph" data-label="Circuit schematic"></div></div>
+                    <figcaption>[Caption]</figcaption>
+                  </figure>
+                  <figure>
+                    <div class="media ratio-4x3"><div class="ph" data-label="PCB layout / wiring"></div></div>
+                    <figcaption>[Caption]</figcaption>
+                  </figure>
+                  <figure class="wide">
+                    <div class="media ratio-16x9"><div class="ph" data-label="System / architecture diagram — 16:9"></div></div>
+                    <figcaption>[Caption]</figcaption>
+                  </figure>
+                </div>
+<pre><span class="c">// [Code snippet — e.g. control loop or sensor read]</span>
+void loop() {
+  float reading = readSensor();
+  // ...
+}</pre>
+              </div>
+
+              <div class="block">
+                <h3><span class="num">04</span> Results &amp; impact</h3>
+                <div class="metrics">
+                  <div class="metric"><div class="big">[Metric]</div><div class="label">[What it measures]</div></div>
+                  <div class="metric"><div class="big">[Metric]</div><div class="label">[What it measures]</div></div>
+                  <div class="metric"><div class="big">[Metric]</div><div class="label">[What it measures]</div></div>
+                </div>
+                <div class="gallery">
+                  <figure><div class="media ratio-4x3"><div class="ph" data-label="Finished build photo"></div></div></figure>
+                  <figure><div class="media ratio-4x3"><div class="ph" data-label="Test data / results plot"></div></div></figure>
+                </div>
+                <p>[Outcome and lessons learned.]</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- =====================================================
+             PROJECT 3
+             ===================================================== -->
+        <article class="project" id="project-3">
+          <div class="project-title">
+            <div>
+              <p class="eyebrow">Project 03 · [Internship / Company]</p>
+              <h2>[Project 3 Title]</h2>
+            </div>
+            <span class="when">[Mon YYYY – Mon YYYY]</span>
+          </div>
+
+          <figure class="media ratio-16x9 project-hero">
+            <div class="ph" data-label="Hero image — 16:9"></div>
+          </figure>
+
+          <div class="project-layout">
+            <aside class="project-meta">
+              <dl>
+                <div><dt>My role</dt><dd>[e.g. Manufacturing Engineering Intern]</dd></div>
+                <div><dt>Team</dt><dd>[Team / Department]</dd></div>
+                <div><dt>Timeframe</dt><dd>[Mon YYYY – Mon YYYY]</dd></div>
+                <div><dt>Tools</dt><dd><div class="chips"><span class="chip">[Tool]</span><span class="chip">[Tool]</span></div></dd></div>
+              </dl>
+            </aside>
+
+            <div class="project-body">
+              <div class="block">
+                <h3><span class="num">01</span> My role &amp; contribution</h3>
+                <p>[What you did.]</p>
+              </div>
+
+              <div class="block">
+                <h3><span class="num">02</span> Problem &amp; constraints</h3>
+                <p>[The challenge.]</p>
+                <div class="constraints">
+                  <div><strong>Requirement</strong>[Requirement]</div>
+                  <div><strong>Constraint</strong>[Constraint]</div>
+                </div>
+              </div>
+
+              <div class="block">
+                <h3><span class="num">03</span> Process &amp; technical details</h3>
+                <p>[How you solved it.]</p>
+                <div class="gallery">
+                  <figure>
+                    <div class="media ratio-4x3"><div class="ph" data-label="Before"></div></div>
+                    <figcaption>[Before: original design / process]</figcaption>
+                  </figure>
+                  <figure>
+                    <div class="media ratio-4x3"><div class="ph" data-label="After"></div></div>
+                    <figcaption>[After: your improvement]</figcaption>
+                  </figure>
+                </div>
+              </div>
+
+              <div class="block">
+                <h3><span class="num">04</span> Results &amp; impact</h3>
+                <div class="metrics">
+                  <div class="metric"><div class="big">[$12k/yr]</div><div class="label">[Cost savings]</div></div>
+                  <div class="metric"><div class="big">[−40%]</div><div class="label">[Cycle time]</div></div>
+                  <div class="metric"><div class="big">[0]</div><div class="label">[Defects after rollout]</div></div>
+                </div>
+                <p>[Outcome.]</p>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© <span id="year"></span> [Your Name]</span>
+      <a href="#top" onclick="window.scrollTo({top:0});return false;">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-label="Image preview"><img alt="" /></div>
+  <script src="script.js"></script>
+</body>
+</html>
