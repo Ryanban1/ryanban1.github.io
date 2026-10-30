@@ -89,6 +89,7 @@ nav ul a:hover { color: var(--text); text-decoration: none; }
 
 /* ---------- Image placeholders ---------- */
 .media { position: relative; overflow: hidden; border-radius: var(--radius); background: var(--surface-2); border: 1px solid var(--border); }
+a .media img { cursor: pointer; }
 .media img { cursor: zoom-in; transition: transform .4s ease; }
 .media:hover img { transform: scale(1.02); }
 .ph {
