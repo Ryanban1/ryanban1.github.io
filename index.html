@@ -7,30 +7,43 @@
   <meta name="description" content="Ryan Banerjee — Computer engineering portfolio." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}
+  /* show the intro once per visit (skipped for reduced motion) */
+  try{if(!sessionStorage.getItem("introSeen")&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("intro-pending");}catch(e){}
+  setTimeout(function(){document.documentElement.classList.remove("intro-pending")},4000); /* safety net */</script>
 </head>
 <body>
 
   <nav>
     <div class="wrap">
-      <a href="index.html" class="logo">Ryan Banerjee</a>
+      <div class="brand">
+        <a href="index.html" class="logo">Ryan Banerjee</a>
+      </div>
+      <div class="nav-right">
       <ul>
         <li><a href="about.html">About</a></li>
         <li><a href="resume.html">Resume</a></li>
         <li><a href="projects.html">Projects</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
+        <button class="theme-toggle" type="button" aria-label="Switch between light and dark mode" title="Switch light / dark mode">
+          <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+      </div>
     </div>
   </nav>
 
   <main>
-    <section id="home" style="padding-top:72px">
+    <section id="home">
       <div class="wrap">
         <div class="hero">
           <div>
             <p class="eyebrow">Computer Engineer</p>
-            <h1>Hi, I'm Ryan Banerjee.</h1>
+            <h1>Hi, I'm <span class="scribble">Ryan</span></h1>
+            <h1><span class="scribble">Banerjee.</span></h1>
             <p class="tagline">I build working hardware, from robot parts I designed in CAD and machined myself to embedded systems on Raspberry Pi.</p>
             <div class="actions">
               <a class="btn primary" href="projects.html">View projects</a>
@@ -39,19 +52,17 @@
                 LinkedIn
               </a>
               <a class="btn" href="https://github.com/ryanban1" target="_blank" rel="noopener">
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2。8。１ ３。２。８。８。１。３。１。９。１。３。３。２。０。４。６－２。８。５。６－５。５。５。９。５。４。４。９。１。１。９。２。２ｖ３。３ｃ０ 。３。１ 。７。８ 。６Ａ１２ 。０ 。０ 。０ 。１２ 。０ 。３"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.2.8.8 1.3 1.9 1.3 3.2 0 4.6-2.8 5.6-5.5 5.9.5.4.9 1.1.9 2.2v3.3c0 .3.1.7.8.6A12 12 0 0 0 12 .3"/></svg>
                 GitHub
               </a>
-              <a class="btn" href="mailto:ryan.banerjee08@email.com">Email</a>
+              <a class="btn" href="mailto:ryan.banerjee08@gmail.com">Email</a>
             </div>
+            <div class="sticky"><b>Currently</b>designing my first PCB in KiCad</div>
           </div>
-          <figure class="media ratio-3x4 portrait">
-            <div class="ph" data-label="Headshot or photo of you at work — 3:4"></div>
-          </figure>
         </div>
       </div>
+      <div class="scroll-hint" aria-hidden="true"><span></span>scroll</div>
     </section>
-
     <section>
       <div class="wrap">
         <div class="section-head">
@@ -65,40 +76,25 @@
           </div>
           <div>
             <h4>Core skills</h4>
-            <div class="chips">
-              <span class="chip">KiCad</span><span class="chip">C++</span><span class="chip">Python</span>
-              <span class="chip">Arduino</span><span class="chip">Raspberry Pi</span><span class="chip">OnShape</span><span class="chip">SolidWorks</span><span class="chip">Machining</span>
+            <div class="skill-group">
+              <h5>Programming</h5>
+              <div class="chips">
+                <span class="chip">C++</span><span class="chip">Python</span><span class="chip">Shell scripting</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <h5>Hardware &amp; Electronics</h5>
+              <div class="chips">
+                <span class="chip">KiCad</span><span class="chip">ESP32</span><span class="chip">Raspberry Pi</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <h5>CAD &amp; Fabrication</h5>
+              <div class="chips">
+                <span class="chip">OnShape</span><span class="chip">Machine shop fabrication</span>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="wrap">
-        <div class="section-head">
-          <div><p class="eyebrow">Projects</p><h2>Selected work</h2></div>
-          <a class="more-link" href="projects.html">All projects →</a>
-        </div>
-        <div class="project-grid">
-          <a class="project-card" href="projects.html#project-1">
-            <figure class="media ratio-4x3"><div class="ph" data-label="Project 1 thumbnail"></div></figure>
-            <h3>[Project 1 Title]</h3>
-            <span class="when">[Mon YYYY – Mon YYYY]</span>
-            <div class="chips" style="margin-top:10px"><span class="chip accent">[Capstone]</span><span class="chip">[CAD]</span><span class="chip">[FEA]</span></div>
-          </a>
-          <a class="project-card" href="projects.html#project-2">
-            <figure class="media ratio-4x3"><div class="ph" data-label="Project 2 thumbnail"></div></figure>
-            <h3>[Project 2 Title]</h3>
-            <span class="when">[Mon YYYY – Mon YYYY]</span>
-            <div class="chips" style="margin-top:10px"><span class="chip accent">[Personal]</span><span class="chip">[Electronics]</span><span class="chip">[Code]</span></div>
-          </a>
-          <a class="project-card" href="projects.html#project-3">
-            <figure class="media ratio-4x3"><div class="ph" data-label="Project 3 thumbnail"></div></figure>
-            <h3>[Project 3 Title]</h3>
-            <span class="when">[Mon YYYY – Mon YYYY]</span>
-            <div class="chips" style="margin-top:10px"><span class="chip accent">[Internship]</span><span class="chip">[Tooling]</span><span class="chip">[DFM]</span></div>
-          </a>
         </div>
       </div>
     </section>
@@ -107,9 +103,9 @@
       <div class="wrap">
         <p class="eyebrow">Contact</p>
         <h2>Let's work together</h2>
-        <p>I'm currently looking for internships starting summer 2027. The best way to reach me is email.</p>
+        <p>I'm currently looking for internships starting summer 2027. The best way to reach me is by email.</p>
         <div class="actions">
-          <a class="btn primary" href="mailto:ryan.banerjee08@email.com">ryan.banerjee08@gmail.com</a>
+          <a class="btn primary" href="mailto:ryan.banerjee08@gmail.com">ryan.banerjee08@gmail.com</a>
           <a class="btn" href="https://linkedin.com/in/ryan-banerjee" target="_blank" rel="noopener">LinkedIn</a>
           <a class="btn" href="https://github.com/ryanban1" target="_blank" rel="noopener">GitHub</a>
           <a class="btn" href="contact.html">All contact info</a>
@@ -121,11 +117,13 @@
   <footer>
     <div class="wrap">
       <span>© <span id="year"></span> Ryan Banerjee</span>
-      <a href="#top" onclick="window.scrollTo({top:0});return false;">Back to top ↑</a>
+      <a href="#top" class="to-top">Back to top ↑</a>
     </div>
   </footer>
 
   <div class="lightbox" id="lightbox" role="dialog" aria-label="Image preview"><img alt="" /></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
