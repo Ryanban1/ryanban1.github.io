@@ -63,7 +63,7 @@
     lastY = y;
   }, { passive: true });
 
-  /* ---------- Heading typing effect (prepared now, played after the intro) ---------- */
+  /* ---------- Heading typing effect (plays on page load) ---------- */
   const typing = (() => {
     const heads = $$(".hero h1");
     if (!heads.length || reduceMotion) return { play() {} };
@@ -94,60 +94,12 @@
   })();
 
   /* ---------- Hero entrance ---------- */
-  const heroBits = $$(".hero .eyebrow, .hero .tagline, .hero .actions > *, .hero .sticky, .hero .facts > div, .scroll-hint");
+  const heroBits = $$(".hero .eyebrow, .hero .tagline, .hero .actions > *, .hero .facts > div, .scroll-hint");
   const animateHero = animate && heroBits.length > 0;
   if (animateHero) gsap.set(heroBits, { opacity: 0, y: 24 });
   const playHero = () => {
     typing.play(150);
     if (animateHero) gsap.to(heroBits, { opacity: 1, y: 0, duration: 0.9, ease: "power3.out", stagger: 0.06, delay: 0.25 });
-  };
-
-  /* ---------- Intro (once per visit): a little circuit powers on ---------- */
-  const runIntro = done => {
-    if (!root.classList.contains("intro-pending")) { done(); return; }
-    const traces = [
-      ["M6 64H52L58 70H80", 1], ["M6 96H44L52 88H80", 0], ["M214 60H170L162 70H140", 0],
-      ["M214 100H176L168 90H140", 1], ["M96 4V50", 1], ["M124 4V24L118 30V50", 0],
-      ["M90 156V134L96 128V110", 0], ["M130 156V110", 1]
-    ];
-    const pads = [[6, 64], [6, 96], [214, 60], [214, 100], [96, 4], [124, 4], [90, 156], [130, 156]];
-    const name = "Ryan Banerjee".split("").map((ch, i) =>
-      `<span style="animation-delay:${0.85 + i * 0.03}s">${ch === " " ? "&nbsp;" : ch}</span>`).join("");
-    const el = document.createElement("div");
-    el.className = "intro";
-    el.setAttribute("aria-hidden", "true");
-    el.innerHTML = `
-      <div class="intro-inner">
-        <svg viewBox="0 0 220 160">
-          ${traces.map(([d, lit], i) => `<path class="trace${lit ? " lit" : ""}" pathLength="1" d="${d}" style="animation-delay:${i * 0.04}s${lit ? `,${0.9 + i * 0.02}s` : ""}"/>`).join("")}
-          ${pads.map(([x, y], i) => `<circle class="pad" cx="${x}" cy="${y}" r="4" style="animation-delay:${0.1 + i * 0.03}s"/>`).join("")}
-          <rect class="chip" x="80" y="50" width="60" height="60" rx="6"/>
-          <text class="chip-text" x="110" y="85" text-anchor="middle">RB</text>
-          <circle class="led" cx="131" cy="59" r="3.5"/>
-        </svg>
-        <div class="intro-name">${name}</div>
-        <div class="intro-status">routing traces…</div>
-      </div>
-      <div class="intro-skip">click to skip</div>`;
-    document.body.appendChild(el);
-    root.classList.remove("intro-pending");
-
-    const status = $(".intro-status", el);
-    const t1 = setTimeout(() => { status.textContent = "powering up…"; }, 650);
-    const t2 = setTimeout(() => { status.textContent = "hello, world."; }, 1250);
-    let finished = false;
-    const finish = () => {
-      if (finished) return;
-      finished = true;
-      clearTimeout(t1); clearTimeout(t2); clearTimeout(auto);
-      try { sessionStorage.setItem("introSeen", "1"); } catch (e) {}
-      el.classList.add("done");
-      done();
-      setTimeout(() => el.remove(), 1000);
-    };
-    const auto = setTimeout(finish, 2000);
-    el.addEventListener("click", finish);
-    window.addEventListener("keydown", finish, { once: true });
   };
 
   /* ---------- Interactive circuit dots behind the hero ---------- */
@@ -343,19 +295,8 @@
     });
   }
 
-  /* ---------- Mouse niceties: magnetic buttons, tilting cards ---------- */
+  /* ---------- Mouse niceties: tilting cards ---------- */
   if (animate && finePointer) {
-    $$(".btn, .theme-toggle").forEach(el => {
-      const mx = gsap.quickTo(el, "x", { duration: 0.4, ease: "power3" });
-      const my = gsap.quickTo(el, "y", { duration: 0.4, ease: "power3" });
-      el.addEventListener("mousemove", e => {
-        const r = el.getBoundingClientRect();
-        mx((e.clientX - (r.left + r.width / 2)) * 0.25);
-        my((e.clientY - (r.top + r.height / 2)) * 0.35);
-      });
-      el.addEventListener("mouseleave", () => gsap.to(el, { x: 0, y: 0, duration: 0.7, ease: "elastic.out(1, 0.4)" }));
-    });
-
     $$(".project-card").forEach(card => {
       card.addEventListener("mousemove", e => {
         const r = card.getBoundingClientRect();
@@ -367,7 +308,7 @@
   }
 
   /* ---------- Go ---------- */
-  runIntro(playHero);
+  playHero();
 
   // A hello for anyone who opens the browser console
   console.log("%c👋 Hey, thanks for peeking under the hood!", "font: 600 14px Inter, sans-serif; color: #2357d9");

@@ -13,7 +13,7 @@
   --text: #16181d;
   --muted: #5f6672;
   --border: #e4e6eb;
-  --accent: #df4e4e;
+  --accent: #ff4040;
   --accent-soft: #eaf0fd;
   --on-accent: #ffffff;
   --radius: 12px;
@@ -189,18 +189,6 @@ figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 8px; }
 .hero .tagline { font-size: 1.18rem; color: var(--muted); margin: 20px 0 28px; max-width: 48ch; }
 .hero .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 36px; }
 .hero .facts { max-width: 720px; }
-
-/* "Currently" note */
-.sticky {
-  display: inline-block; max-width: 360px;
-  padding: 12px 16px; border-radius: 10px;
-  background: var(--surface-2); border: 1px solid var(--border);
-  font-size: 0.95rem;
-}
-.sticky b {
-  display: block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--muted); margin-bottom: 2px;
-}
 
 .facts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px 28px; padding-top: 28px; border-top: 1px solid var(--border); }
 .facts div span { display: block; }
@@ -379,39 +367,6 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
 nav { transition: transform .35s cubic-bezier(.2,.7,.2,1), background-color .2s; }
 nav.nav-hidden { transform: translateY(-100%); }
 
-/* ---------- Intro ---------- */
-html.intro-pending body::before {
-  content: ""; position: fixed; inset: 0; z-index: 9998; background: #0d0f14;
-}
-.intro {
-  position: fixed; inset: 0; z-index: 9999;
-  display: grid; place-items: center; background: #0d0f14; color: #eceef2;
-  clip-path: inset(0 0 0 0);
-  transition: clip-path .9s cubic-bezier(.77,0,.18,1);
-  cursor: pointer;
-}
-.intro.done { clip-path: inset(0 0 100% 0); }
-.intro-inner { display: grid; justify-items: center; gap: 22px; text-align: center; padding: 24px; }
-.intro svg { width: min(220px, 50vw); height: auto; overflow: visible; }
-.intro .trace { fill: none; stroke: #2a3140; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
-  stroke-dasharray: 1; stroke-dashoffset: 1; animation: trace-draw .8s cubic-bezier(.6,0,.2,1) forwards; }
-.intro .trace.lit { stroke: #7aa2ff; animation: trace-draw .8s cubic-bezier(.6,0,.2,1) forwards, trace-glow .5s .9s ease forwards; }
-.intro .pad { fill: #0d0f14; stroke: #3a4354; stroke-width: 2; opacity: 0; animation: pop .3s ease forwards; }
-.intro .chip { fill: #1a1f29; stroke: #4a5568; stroke-width: 2; opacity: 0; transform-origin: center; transform-box: fill-box;
-  animation: chip-in .45s .55s cubic-bezier(.3,1.5,.5,1) forwards; }
-.intro .chip-text { font: 600 15px Inter, sans-serif; fill: #eceef2; opacity: 0; animation: pop .3s .85s ease forwards; letter-spacing: .04em; }
-.intro .led { fill: #7aa2ff; opacity: 0; animation: led-on .4s 1.05s ease forwards; }
-.intro-name { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 700; letter-spacing: -0.02em; overflow: hidden; }
-.intro-name span { display: inline-block; transform: translateY(110%); animation: rise .6s cubic-bezier(.2,.8,.2,1) forwards; }
-.intro-status { font-family: var(--mono); font-size: 0.78rem; color: #8b93a6; letter-spacing: 0.06em; min-height: 1.2em; }
-.intro-skip { position: absolute; bottom: 24px; font-size: 0.75rem; color: #5d6576; letter-spacing: .06em; }
-@keyframes trace-draw { to { stroke-dashoffset: 0; } }
-@keyframes trace-glow { to { filter: drop-shadow(0 0 4px #7aa2ff); } }
-@keyframes pop { to { opacity: 1; } }
-@keyframes chip-in { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: scale(1); } }
-@keyframes led-on { 0% { opacity: 0; } 40% { opacity: 1; } 60% { opacity: .4; } 100% { opacity: 1; filter: drop-shadow(0 0 6px #7aa2ff); } }
-@keyframes rise { to { transform: translateY(0); } }
-
 /* ---------- Hero stage ---------- */
 #home { padding-top: 0; }
 #home, #about:has(.hero) { position: relative; isolation: isolate; }
@@ -456,7 +411,7 @@ html.intro-pending body::before {
    ========================================================= */
 :root { --display: "Montserrat", "Inter", system-ui, sans-serif; }
 
-h1, h2, h3, h5, .metric .big, .facts .value, .intro-name {
+h1, h2, h3, h5, .metric .big, .facts .value {
   font-family: var(--display);
   font-optical-sizing: auto;
   letter-spacing: -0.015em;
@@ -469,7 +424,6 @@ h3 { font-weight: 600; font-size: 1.2rem; }
 
 /* Your name: same font as the rest of the headline, in the accent color */
 .scribble { font-style: normal; }
-.intro-name { font-weight: 800; }
 
 /* Logo stays in the clean body font */
 nav .logo { font-family: var(--font); font-size: 1rem; font-weight: 700; letter-spacing: -0.01em; }
@@ -479,14 +433,14 @@ nav .logo { font-family: var(--font); font-size: 1rem; font-weight: 700; letter-
 
 /* Small labels, dates and tags read like code */
 .eyebrow, h4, .facts .label, .project-meta dt, .contact-cards .label, .snapshot .when,
-.card .when, .timeline .when, .project-card .when, .project-title .when, .sticky b,
+.card .when, .timeline .when, .project-card .when, .project-title .when,
 .constraints strong, .chip, .block > h3 .num, .scroll-hint {
   font-family: var(--mono);
   letter-spacing: 0.04em;
 }
 .eyebrow { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.12em; }
 .eyebrow::before { content: "// "; opacity: 0.55; }
-h4, .facts .label, .project-meta dt, .contact-cards .label, .snapshot .when, .sticky b, .constraints strong {
+h4, .facts .label, .project-meta dt, .contact-cards .label, .snapshot .when, .constraints strong {
   font-weight: 500; font-size: 0.72rem; letter-spacing: 0.1em;
 }
 .chip { font-size: 0.76rem; letter-spacing: 0.02em; }
@@ -494,73 +448,3 @@ h4, .facts .label, .project-meta dt, .contact-cards .label, .snapshot .when, .st
 
 /* A little more air for the bigger serif */
 .hero .tagline { font-size: 1.2rem; }
-.intro-name { font-size: clamp(2rem, 5vw, 3rem); }
-
-/* =========================================================
-   Resume page banner — fills exactly one screen below the nav.
-   The Download button sits in the exact middle of the screen,
-   and the GIF is zoomed and slid so the fingertip lands right
-   at the button's left edge, on any screen size.
-
-   Knobs you can tweak:
-     --fx / --fy   where the fingertip is in the GIF (0–1 across / down)
-     --zoom        how much extra the GIF is zoomed (room to slide it)
-     --btn-w       the button's width
-   ========================================================= */
-.resume-banner {
-  --nav-h: 63px;
-  --fx: 0.515;
-  --fy: 0.4;
-  --zoom: 1.25;
-  --btn-w: 250px;
-  --gap: 10px;                                          /* space between fingertip and button */
-
-  --H: calc(100svh - var(--nav-h));                     /* banner height = one screen minus the nav */
-  --IW: calc(max(100vw, var(--H) * 2206 / 1234) * var(--zoom));   /* GIF width once zoomed (at least "cover") */
-  --IH: calc(var(--IW) * 1234 / 2206);                  /* GIF height, same shape */
-  --tx: calc(50vw - var(--btn-w) / 2 - var(--gap));     /* where the fingertip should land (x) */
-  --ty: calc(50svh - var(--nav-h));                     /* ...and (y): the middle of the screen */
-
-  position: relative;
-  height: var(--H);
-  padding: 0;
-  overflow: hidden;
-  background-color: #7cc6ee;
-  background-image: url("images/resume-bg.gif");
-  background-repeat: no-repeat;
-  background-size: var(--IW) var(--IH);
-  /* slide the GIF so the fingertip hits the target, but never so far that an edge shows */
-  background-position:
-    clamp(calc(100vw - var(--IW)), calc(var(--tx) - var(--IW) * var(--fx)), 0px)
-    clamp(calc(var(--H) - var(--IH)), calc(var(--ty) - var(--IH) * var(--fy)), 0px);
-}
-.resume-banner + section { border-top: none; }
-/* the button: dead center of the screen */
-.resume-banner-point {
-  position: absolute; left: 50%; top: var(--ty);
-  display: flex; transform: translate(-50%, -50%);
-}
-.resume-download {
-  width: var(--btn-w); justify-content: center;
-  font-size: 1.05rem; padding: 14px 20px; border-radius: 12px; white-space: nowrap;
-  box-shadow: 0 10px 30px -8px rgba(10, 30, 80, .55);
-  position: relative;
-}
-/* soft pulse to draw the eye */
-.resume-download::after {
-  content: ""; position: absolute; inset: 0; border-radius: inherit;
-  box-shadow: 0 0 0 0 rgba(255, 255, 255, .7);
-  animation: resume-pulse 2.2s ease-out infinite;
-}
-@keyframes resume-pulse { 70% { box-shadow: 0 0 0 16px rgba(255, 255, 255, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); } }
-.resume-banner-more {
-  position: absolute; left: 50%; bottom: 24px; transform: translateX(-50%);
-  color: #fff; font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.08em; white-space: nowrap;
-  background: rgba(10, 25, 60, .35); padding: 6px 14px; border-radius: 999px;
-  backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
-}
-.resume-banner-more:hover { text-decoration: none; background: rgba(10, 25, 60, .55); }
-@media (max-width: 640px) {
-  .resume-banner { --btn-w: 220px; }
-  .resume-download { font-size: 0.95rem; padding: 12px 16px; }
-}

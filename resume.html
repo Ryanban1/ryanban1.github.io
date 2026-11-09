@@ -9,10 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}
-  /* show the intro once per visit (skipped for reduced motion) */
-  try{if(!sessionStorage.getItem("introSeen")&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("intro-pending");}catch(e){}
-  setTimeout(function(){document.documentElement.classList.remove("intro-pending")},4000); /* safety net */</script>
+  <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
 </head>
 <body>
 
@@ -37,18 +34,6 @@
   </nav>
 
   <main>
-    <!-- Full-screen banner: the GIF, with the download button placed where the finger points.
-         The point is set by --point-x / --point-y in styles.css (.resume-banner). -->
-    <section class="resume-banner" aria-label="Download my resume">
-      <div class="resume-banner-point">
-        <a class="btn primary resume-download" href="Ryan_Banerjee_Resume.pdf" download>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M5 21h14"/></svg>
-          Download my resume
-        </a>
-      </div>
-      <a class="resume-banner-more" href="#resume">Scroll for details ↓</a>
-    </section>
-
     <section id="resume">
       <div class="wrap">
         <div class="resume-head">
@@ -56,6 +41,11 @@
             <p class="eyebrow">Resume</p>
             <h2>Experience &amp; education</h2>
           </div>
+          <!-- Put your PDF in the repo (e.g. resume.pdf) and point this link at it -->
+          <a class="btn primary" href="Ryan_Banerjee_Resume.pdf" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M5 21h14"/></svg>
+            Download PDF
+          </a>
         </div>
 
         <div class="resume-grid">

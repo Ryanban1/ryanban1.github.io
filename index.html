@@ -9,10 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}
-  /* show the intro once per visit (skipped for reduced motion) */
-  try{if(!sessionStorage.getItem("introSeen")&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("intro-pending");}catch(e){}
-  setTimeout(function(){document.documentElement.classList.remove("intro-pending")},4000); /* safety net */</script>
+  <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
 </head>
 <body>
 
@@ -57,7 +54,6 @@
               </a>
               <a class="btn" href="mailto:ryan.banerjee08@gmail.com">Email</a>
             </div>
-            <div class="sticky"><b>Currently</b>designing my first PCB in KiCad</div>
           </div>
         </div>
       </div>

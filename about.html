@@ -9,10 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}
-  /* show the intro once per visit (skipped for reduced motion) */
-  try{if(!sessionStorage.getItem("introSeen")&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("intro-pending");}catch(e){}
-  setTimeout(function(){document.documentElement.classList.remove("intro-pending")},4000); /* safety net */</script>
+  <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
 </head>
 <body>
 
@@ -93,19 +90,6 @@
             </div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- =====================================================
-         OFF THE CLOCK — the button opens hobbies.html (not in the nav)
-         ===================================================== -->
-    <section id="hobbies">
-      <div class="wrap">
-        <div class="section-head">
-          <div><p class="eyebrow">Off the clock</p><h2>When I'm not engineering...</h2></div>
-        </div>
-        <p class="muted" style="max-width:52ch;margin-bottom:22px">Badminton, gaming, and art. Here's what I get up to outside of class and the lab.</p>
-        <a class="btn primary" href="hobbies.html">See what I'm up to →</a>
       </div>
     </section>
   </main>

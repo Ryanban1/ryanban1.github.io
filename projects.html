@@ -9,10 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}
-  /* show the intro once per visit (skipped for reduced motion) */
-  try{if(!sessionStorage.getItem("introSeen")&&!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("intro-pending");}catch(e){}
-  setTimeout(function(){document.documentElement.classList.remove("intro-pending")},4000); /* safety net */</script>
+  <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
 </head>
 <body>
 
@@ -48,18 +45,6 @@
             <h3>Theft-Deterrent Security System</h3>
             <span class="when">Jul 2025 – Aug 2025</span>
             <div class="chips" style="margin-top:10px"><span class="chip accent">Summer program</span><span class="chip">CAD</span><span class="chip">Circuit design</span></div>
-          </a>
-          <a class="project-card" href="#project-2">
-            <figure class="media ratio-4x3"><div class="ph" data-label="Project 2 thumbnail"></div></figure>
-            <h3>[Project 2 Title]</h3>
-            <span class="when">[Mon YYYY – Mon YYYY]</span>
-            <div class="chips" style="margin-top:10px"><span class="chip accent">[Personal]</span><span class="chip">[Electronics]</span><span class="chip">[Code]</span></div>
-          </a>
-          <a class="project-card" href="#project-3">
-            <figure class="media ratio-4x3"><div class="ph" data-label="Project 3 thumbnail"></div></figure>
-            <h3>[Project 3 Title]</h3>
-            <span class="when">[Mon YYYY – Mon YYYY]</span>
-            <div class="chips" style="margin-top:10px"><span class="chip accent">[Internship]</span><span class="chip">[Tooling]</span><span class="chip">[DFM]</span></div>
           </a>
         </div>
 
@@ -140,162 +125,11 @@
 
               <div class="block">
                 <h3><span class="num">04</span> Results &amp; impact</h3>
-                <h3><span class="num">04</span> Results &amp; impact</h3>
                 <div class="metrics">
                   <div class="metric"><div class="big">&lt;3 wks</div><div class="label">From idea to working prototype</div></div>
                   <div class="metric"><div class="big">−77%</div><div class="label">Unit cost at scale ($76.55 → $17.80)</div></div>
                   <div class="metric"><div class="big">3</div><div class="label">Real-world test environments</div></div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- =====================================================
-             PROJECT 2
-             ===================================================== -->
-        <article class="project" id="project-2">
-          <div class="project-title">
-            <div>
-              <p class="eyebrow">Project 02 · [Personal / Solo]</p>
-              <h2>[Project 2 Title]</h2>
-            </div>
-            <span class="when">[Mon YYYY – Mon YYYY]</span>
-          </div>
-
-          <figure class="media ratio-16x9 project-hero">
-            <div class="ph" data-label="Hero image — 16:9"></div>
-          </figure>
-
-          <div class="project-layout">
-            <aside class="project-meta">
-              <dl>
-                <div><dt>My role</dt><dd>[Solo — design, build, code]</dd></div>
-                <div><dt>Timeframe</dt><dd>[Mon YYYY – Mon YYYY]</dd></div>
-                <div><dt>Tools</dt><dd><div class="chips"><span class="chip">[KiCad]</span><span class="chip">[C++]</span><span class="chip">[Fusion 360]</span></div></dd></div>
-              </dl>
-            </aside>
-
-            <div class="project-body">
-              <div class="block">
-                <h3><span class="num">01</span> My role &amp; contribution</h3>
-                <p>[What you did.]</p>
-              </div>
-
-              <div class="block">
-                <h3><span class="num">02</span> Problem &amp; constraints</h3>
-                <p>[The challenge.]</p>
-                <div class="constraints">
-                  <div><strong>Requirement</strong>[Requirement]</div>
-                  <div><strong>Constraint</strong>[Constraint]</div>
-                </div>
-              </div>
-
-              <div class="block">
-                <h3><span class="num">03</span> Process &amp; technical details</h3>
-                <p>[How you solved it.]</p>
-                <div class="gallery">
-                  <figure>
-                    <div class="media ratio-4x3"><div class="ph" data-label="Circuit schematic"></div></div>
-                    <figcaption>[Caption]</figcaption>
-                  </figure>
-                  <figure>
-                    <div class="media ratio-4x3"><div class="ph" data-label="PCB layout / wiring"></div></div>
-                    <figcaption>[Caption]</figcaption>
-                  </figure>
-                  <figure class="wide">
-                    <div class="media ratio-16x9"><div class="ph" data-label="System / architecture diagram — 16:9"></div></div>
-                    <figcaption>[Caption]</figcaption>
-                  </figure>
-                </div>
-<pre><span class="c">// [Code snippet — e.g. control loop or sensor read]</span>
-void loop() {
-  float reading = readSensor();
-  // ...
-}</pre>
-              </div>
-
-              <div class="block">
-                <h3><span class="num">04</span> Results &amp; impact</h3>
-                <div class="metrics">
-                  <div class="metric"><div class="big">[Metric]</div><div class="label">[What it measures]</div></div>
-                  <div class="metric"><div class="big">[Metric]</div><div class="label">[What it measures]</div></div>
-                  <div class="metric"><div class="big">[Metric]</div><div class="label">[What it measures]</div></div>
-                </div>
-                <div class="gallery">
-                  <figure><div class="media ratio-4x3"><div class="ph" data-label="Finished build photo"></div></div></figure>
-                  <figure><div class="media ratio-4x3"><div class="ph" data-label="Test data / results plot"></div></div></figure>
-                </div>
-                <p>[Outcome and lessons learned.]</p>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- =====================================================
-             PROJECT 3
-             ===================================================== -->
-        <article class="project" id="project-3">
-          <div class="project-title">
-            <div>
-              <p class="eyebrow">Project 03 · [Internship / Company]</p>
-              <h2>[Project 3 Title]</h2>
-            </div>
-            <span class="when">[Mon YYYY – Mon YYYY]</span>
-          </div>
-
-          <figure class="media ratio-16x9 project-hero">
-            <div class="ph" data-label="Hero image — 16:9"></div>
-          </figure>
-
-          <div class="project-layout">
-            <aside class="project-meta">
-              <dl>
-                <div><dt>My role</dt><dd>[e.g. Manufacturing Engineering Intern]</dd></div>
-                <div><dt>Team</dt><dd>[Team / Department]</dd></div>
-                <div><dt>Timeframe</dt><dd>[Mon YYYY – Mon YYYY]</dd></div>
-                <div><dt>Tools</dt><dd><div class="chips"><span class="chip">[Tool]</span><span class="chip">[Tool]</span></div></dd></div>
-              </dl>
-            </aside>
-
-            <div class="project-body">
-              <div class="block">
-                <h3><span class="num">01</span> My role &amp; contribution</h3>
-                <p>[What you did.]</p>
-              </div>
-
-              <div class="block">
-                <h3><span class="num">02</span> Problem &amp; constraints</h3>
-                <p>[The challenge.]</p>
-                <div class="constraints">
-                  <div><strong>Requirement</strong>[Requirement]</div>
-                  <div><strong>Constraint</strong>[Constraint]</div>
-                </div>
-              </div>
-
-              <div class="block">
-                <h3><span class="num">03</span> Process &amp; technical details</h3>
-                <p>[How you solved it.]</p>
-                <div class="gallery">
-                  <figure>
-                    <div class="media ratio-4x3"><div class="ph" data-label="Before"></div></div>
-                    <figcaption>[Before: original design / process]</figcaption>
-                  </figure>
-                  <figure>
-                    <div class="media ratio-4x3"><div class="ph" data-label="After"></div></div>
-                    <figcaption>[After: your improvement]</figcaption>
-                  </figure>
-                </div>
-              </div>
-
-              <div class="block">
-                <h3><span class="num">04</span> Results &amp; impact</h3>
-                <div class="metrics">
-                  <div class="metric"><div class="big">[$12k/yr]</div><div class="label">[Cost savings]</div></div>
-                  <div class="metric"><div class="big">[−40%]</div><div class="label">[Cycle time]</div></div>
-                  <div class="metric"><div class="big">[0]</div><div class="label">[Defects after rollout]</div></div>
-                </div>
-                <p>[Outcome.]</p>
               </div>
             </div>
           </div>
