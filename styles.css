@@ -166,8 +166,7 @@ nav ul a.active { color: var(--text); font-weight: 600; }
   background: var(--surface-2); border: 1px solid var(--border);
 }
 a .media img { cursor: pointer; }
-.media img { cursor: zoom-in; transition: transform .4s ease; }
-.media:hover img { transform: scale(1.02); }
+.media img { cursor: zoom-in; }
 .ph {
   width: 100%; height: 100%; min-height: 160px;
   display: grid; place-items: center; text-align: center;
@@ -333,11 +332,6 @@ pre .c { color: var(--muted); }
 footer { padding: 32px 0; border-top: 1px solid var(--border); font-size: 0.85rem; color: var(--muted); }
 footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
 
-/* ---------- Scroll reveal (only when JS is running) ---------- */
-@media (prefers-reduced-motion: no-preference) {
-  .js .reveal { opacity: 0; translate: 0 12px; transition: opacity .5s ease, translate .5s ease; }
-  .js .reveal.in { opacity: 1; translate: 0 0; }
-}
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
   html { scroll-behavior: auto; }
@@ -352,21 +346,6 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
 .lightbox.open { display: flex; }
 .lightbox img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; border-radius: 8px; }
 
-/* =========================================================
-   Motion & character
-   ========================================================= */
-
-/* Fade between pages in browsers that support it */
-@view-transition { navigation: auto; }
-::view-transition-old(root) { animation: vt-out .25s ease both; }
-::view-transition-new(root) { animation: vt-in .35s ease both; }
-@keyframes vt-out { to { opacity: 0; transform: translateY(-8px); } }
-@keyframes vt-in { from { opacity: 0; transform: translateY(8px); } }
-
-/* Nav tucks away while scrolling down, comes back when scrolling up */
-nav { transition: transform .35s cubic-bezier(.2,.7,.2,1), background-color .2s; }
-nav.nav-hidden { transform: translateY(-100%); }
-
 /* ---------- Hero stage ---------- */
 #home { padding-top: 0; }
 #home, #about:has(.hero) { position: relative; isolation: isolate; }
@@ -378,38 +357,16 @@ nav.nav-hidden { transform: translateY(-100%); }
           mask-image: radial-gradient(ellipse 75% 70% at 70% 45%, #000 30%, transparent 80%);
 }
 .hero h1 { font-size: clamp(2.8rem, 7.4vw, 5.4rem); letter-spacing: -0.04em; line-height: 1.02; }
-.scroll-hint {
-  position: absolute; left: 50%; bottom: 28px; transform: translateX(-50%);
-  display: grid; justify-items: center; gap: 8px;
-  font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted);
-}
-.scroll-hint span { width: 22px; height: 34px; border: 1.5px solid var(--muted); border-radius: 12px; position: relative; opacity: .7; }
-.scroll-hint span::after {
-  content: ""; position: absolute; left: 50%; top: 7px; width: 3px; height: 7px; margin-left: -1.5px;
-  border-radius: 2px; background: var(--accent); animation: wheel 1.6s ease-in-out infinite;
-}
-@keyframes wheel { 0% { transform: translateY(0); opacity: 1; } 70% { transform: translateY(10px); opacity: 0; } 100% { opacity: 0; } }
-
-/* Headings that rise word by word */
-.split-word { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.08em; margin-bottom: -0.08em; }
-.split-word > span { display: inline-block; will-change: transform; }
-
-
-/* Small polish */
-.project-card .media { transform-style: preserve-3d; will-change: transform; }
-.btn, .theme-toggle { will-change: transform; }
-.media.img-reveal img { will-change: transform; }
 
 @media (prefers-reduced-motion: reduce) {
   #home { min-height: auto; }
-  .scroll-hint { display: none; }
 }
 
 /* =========================================================
    Typography — expressive headings, clean body, code-style labels
-   Montserrat (headings): a geometric sans-serif, bold and confident.
+   PT Serif Caption (headings): a sturdy, highly readable serif.
    ========================================================= */
-:root { --display: "Montserrat", "Inter", system-ui, sans-serif; }
+:root { --display: "PT Serif Caption", Georgia, serif; }
 
 h1, h2, h3, h5, .metric .big, .facts .value {
   font-family: var(--display);
@@ -434,7 +391,7 @@ nav .logo { font-family: var(--font); font-size: 1rem; font-weight: 700; letter-
 /* Small labels, dates and tags read like code */
 .eyebrow, h4, .facts .label, .project-meta dt, .contact-cards .label, .snapshot .when,
 .card .when, .timeline .when, .project-card .when, .project-title .when,
-.constraints strong, .chip, .block > h3 .num, .scroll-hint {
+.constraints strong, .chip, .block > h3 .num {
   font-family: var(--mono);
   letter-spacing: 0.04em;
 }

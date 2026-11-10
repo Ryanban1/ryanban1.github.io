@@ -1,21 +1,13 @@
 /* =========================================================
-   Site interactions & animation.
-   Uses GSAP + ScrollTrigger for scroll animations when they load. If they don't, or the
-   visitor prefers reduced motion, everything still works and
-   all content is visible — just with calmer motion.
+   Site interactions.
+   Animations: the typing effect on headings and the circuit-dots
+   background behind the hero. Visitors who prefer reduced motion
+   see all text right away and a still dot grid.
    ========================================================= */
 (() => {
   const root = document.documentElement;
   root.classList.add("js");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-  const hasGSAP = typeof window.gsap !== "undefined" && typeof window.ScrollTrigger !== "undefined";
-  const animate = hasGSAP && !reduceMotion;
-  if (!hasGSAP) root.classList.add("no-gsap");
-  if (hasGSAP) {
-    gsap.registerPlugin(ScrollTrigger);
-    gsap.ticker.lagSmoothing(0);   // never slow animations down after a hiccup, so content can't get stuck hidden
-  }
 
   const $ = (sel, el = document) => el.querySelector(sel);
   const $$ = (sel, el = document) => Array.from(el.querySelectorAll(sel));
@@ -51,34 +43,22 @@
     document.addEventListener("keydown", e => { if (e.key === "Escape") box.classList.remove("open"); });
   }
 
-  /* ---------- Nav tucks away while scrolling down, comes back on scroll up ---------- */
-  const nav = $("nav");
-  let lastY = window.scrollY;
-  window.addEventListener("scroll", () => {
-    const y = window.scrollY;
-    if (nav) {
-      if (y > 160 && y > lastY + 4) nav.classList.add("nav-hidden");
-      else if (y < lastY - 4 || y < 160) nav.classList.remove("nav-hidden");
-    }
-    lastY = y;
-  }, { passive: true });
-
-  /* ---------- Heading typing effect (plays on page load) ---------- */
-  const typing = (() => {
-    const heads = $$(".hero h1");
-    if (!heads.length || reduceMotion) return { play() {} };
+  /* ---------- Typing effect: text types itself out behind a cursor ---------- */
+  const makeTyper = els => {
+    if (!els.length || reduceMotion) return { play() {} };
     const parts = [];
-    heads.forEach(h => {
+    els.forEach(h => {
       h.style.minHeight = h.offsetHeight + "px";      // no page jump while it types
       h.setAttribute("aria-label", h.textContent.trim());
       const walker = document.createTreeWalker(h, NodeFilter.SHOW_TEXT);
       let n;
       while ((n = walker.nextNode())) { parts.push({ node: n, text: n.nodeValue }); n.nodeValue = ""; }
     });
+    if (!parts.length) return { play() {} };
     const cursor = document.createElement("span");
     cursor.className = "type-cursor";
     cursor.setAttribute("aria-hidden", "true");
-    let p = 0, i = 0;
+    let p = 0, i = 0, started = false;
     const place = () => { const node = parts[p].node; node.parentNode.insertBefore(cursor, node.nextSibling); };
     place();
     const tick = () => {
@@ -88,19 +68,28 @@
       place();
       if (i >= part.text.length) { p++; i = 0; }
       if (p < parts.length) setTimeout(tick, 25 + Math.random() * 45);
-      else cursor.remove();
+      else { cursor.remove(); els.forEach(h => (h.style.minHeight = "")); }
     };
-    return { play(delay = 0) { setTimeout(tick, delay); } };
-  })();
-
-  /* ---------- Hero entrance ---------- */
-  const heroBits = $$(".hero .eyebrow, .hero .tagline, .hero .actions > *, .hero .facts > div, .scroll-hint");
-  const animateHero = animate && heroBits.length > 0;
-  if (animateHero) gsap.set(heroBits, { opacity: 0, y: 24 });
-  const playHero = () => {
-    typing.play(150);
-    if (animateHero) gsap.to(heroBits, { opacity: 1, y: 0, duration: 0.9, ease: "power3.out", stagger: 0.06, delay: 0.25 });
+    return { play(delay = 0) { if (started) return; started = true; setTimeout(tick, delay); } };
   };
+
+  // The hero name types on page load
+  makeTyper($$(".hero h1")).play(150);
+
+  // Every other heading and label types out when it scrolls into view
+  if (!reduceMotion && "IntersectionObserver" in window) {
+    const typeTargets = $$("main h1, main h2, main h3, main h4, main h5, main .eyebrow")
+      .filter(el => !el.closest(".hero") && el.textContent.trim());
+    const typers = new Map(typeTargets.map(el => [el, makeTyper([el])]));
+    const typeIO = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        typers.get(e.target).play(120);
+        typeIO.unobserve(e.target);
+      });
+    }, { rootMargin: "0px 0px -8% 0px" });
+    typeTargets.forEach(el => typeIO.observe(el));
+  }
 
   /* ---------- Interactive circuit dots behind the hero ---------- */
   const heroSection = $(".hero") && $(".hero").closest("section");
@@ -216,101 +205,7 @@
     });
   }
 
-  /* ---------- Scroll animations ---------- */
-  if (animate) {
-    // Sections that stay still while scrolling: the hero and the homepage "A bit about me"
-    const homeAbout = $(".home-about") && $(".home-about").closest("section");
-    const still = el => el.closest(".hero") || (homeAbout && homeAbout.contains(el));
-
-    // Headings rise in word by word
-    $$("main h2").forEach(h2 => {
-      if (still(h2) || h2.children.length) return;
-      const words = h2.textContent.trim().split(/\s+/);
-      h2.innerHTML = words.map(w => `<span class="split-word"><span>${w.replace(/&/g, "&amp;").replace(/</g, "&lt;")}</span></span>`).join(" ");
-      gsap.from($$(".split-word > span", h2), {
-        yPercent: 110, duration: 0.9, ease: "power4.out", stagger: 0.06,
-        scrollTrigger: { trigger: h2, start: "top 88%" }
-      });
-    });
-    $$("main .eyebrow").forEach(el => {
-      if (still(el)) return;
-      gsap.from(el, { opacity: 0, x: -14, duration: 0.7, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 90%" } });
-    });
-
-    // Images unveil from the bottom with a slow zoom
-    $$(".project-card .media, .gallery .media, .project-hero, .hobby .media").forEach(m => {
-      m.classList.add("img-reveal");
-      const inner = m.firstElementChild;
-      const tl = gsap.timeline({ scrollTrigger: { trigger: m, start: "top 88%" } });
-      tl.fromTo(m, { clipPath: "inset(100% 0% 0% 0% round 12px)" }, { clipPath: "inset(0% 0% 0% 0% round 12px)", duration: 1.1, ease: "power4.inOut" });
-      if (inner) tl.from(inner, { scale: 1.2, duration: 1.4, ease: "power3.out" }, 0);
-    });
-
-    // Cards and list items drift up as they arrive
-    const batchTargets = $$(".card, .project-card, .hobby, .metric, .timeline > li, .constraints > div, .steps li, .skill-group, .project-meta, .home-about > div, .about-body > div, #contact .actions")
-      .filter(el => !still(el));
-    gsap.set(batchTargets, { opacity: 0, y: 30 });
-    const showBatch = batch => gsap.to(batch, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out", stagger: 0.08, overwrite: true });
-    // also reveal things the page jumps past (e.g. arriving via projects.html#project-1) or scrolls back up to
-    ScrollTrigger.batch(batchTargets, { start: "top 90%", onEnter: showBatch, onLeave: showBatch, onEnterBack: showBatch });
-    window.addEventListener("load", () => {
-      const already = batchTargets.filter(el => el.getBoundingClientRect().top < window.innerHeight);
-      if (already.length) showBatch(already);
-    });
-
-    // Project numbers count up
-    $$(".metric .big").forEach(el => {
-      const m = el.textContent.trim().match(/^(\D*?)([−-]?)(\d+(?:\.\d+)?)(.*)$/);
-      if (!m) return;
-      const [, pre, sign, num, post] = m;
-      const val = { n: 0 };
-      gsap.to(val, {
-        n: parseFloat(num), duration: 1.6, ease: "power2.out",
-        scrollTrigger: { trigger: el, start: "top 90%" },
-        onUpdate: () => { el.textContent = pre + sign + Math.round(val.n) + post; }
-      });
-    });
-
-    // The hero drifts up and fades as you scroll away from it
-    if (heroSection) {
-      gsap.to(".hero", {
-        yPercent: -12, opacity: 0.15, ease: "none",
-        scrollTrigger: { trigger: heroSection, start: "top top", end: "bottom top", scrub: true }
-      });
-      const hint = $(".scroll-hint");
-      if (hint) gsap.to(hint, { opacity: 0, ease: "none", scrollTrigger: { trigger: heroSection, start: "top top", end: "+=160", scrub: true } });
-    }
-
-    // Recalculate once fonts and images have loaded
-    window.addEventListener("load", () => ScrollTrigger.refresh());
-  } else if (!reduceMotion && "IntersectionObserver" in window) {
-    // Simple fade-in fallback when the animation library isn't available
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add("in"); io.unobserve(entry.target); } });
-    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
-    $$("main .wrap > *, .project-grid > *, .hobbies > *, .gallery > *, .metrics > *, .snapshot > *, .timeline > li").forEach(el => {
-      if (el.closest(".hero")) return;
-      el.classList.add("reveal");
-      io.observe(el);
-    });
-  }
-
-  /* ---------- Mouse niceties: tilting cards ---------- */
-  if (animate && finePointer) {
-    $$(".project-card").forEach(card => {
-      card.addEventListener("mousemove", e => {
-        const r = card.getBoundingClientRect();
-        const px = (e.clientX - r.left) / r.width - 0.5, py = (e.clientY - r.top) / r.height - 0.5;
-        gsap.to(card, { rotateY: px * 8, rotateX: -py * 8, transformPerspective: 900, duration: 0.4, ease: "power2.out" });
-      });
-      card.addEventListener("mouseleave", () => gsap.to(card, { rotateY: 0, rotateX: 0, duration: 0.6, ease: "power3.out" }));
-    });
-  }
-
-  /* ---------- Go ---------- */
-  playHero();
-
   // A hello for anyone who opens the browser console
   console.log("%c👋 Hey, thanks for peeking under the hood!", "font: 600 14px Inter, sans-serif; color: #2357d9");
-  console.log("%cThis site is hand-built with HTML, CSS and GSAP. Say hi: ryan.banerjee08@gmail.com", "font: 12px Inter, sans-serif; color: #5f6672");
+  console.log("%cThis site is hand-built with HTML and CSS. Say hi: ryan.banerjee08@gmail.com", "font: 12px Inter, sans-serif; color: #5f6672");
 })();
