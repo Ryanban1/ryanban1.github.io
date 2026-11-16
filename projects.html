@@ -3,149 +3,163 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Projects — Ryan Banerjee</title>
-  <meta name="description" content="Ryan Banerjee — Computer engineering portfolio." />
+  <title>Projects · Ryan Banerjee</title>
+  <meta name="description" content="Ryan Banerjee, Computer Engineering student at UC Santa Barbara who builds working hardware." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=PT+Serif+Caption:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.186.1/examples/jsm/"}}</script>
   <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
 </head>
 <body>
-
-  <nav>
+  <header>
     <div class="wrap">
-      <div class="brand">
-        <a href="index.html" class="logo">Ryan Banerjee</a>
-      </div>
-      <div class="nav-right">
-      <ul>
-        <li><a href="about.html">About</a></li>
-        <li><a href="resume.html">Resume</a></li>
-        <li><a href="projects.html" class="active" aria-current="page">Projects</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
+      <a class="home-link" href="index.html">Ryan Banerjee</a>
+      <nav aria-label="Main">
+        <a href="about.html">About</a>
+        <a href="resume.html">Resume</a>
+        <a href="projects.html" aria-current="page">Projects</a>
+        <a href="contact.html">Contact</a>
         <button class="theme-toggle" type="button" aria-label="Switch between light and dark mode" title="Switch light / dark mode">
           <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
           <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
         </button>
-      </div>
+      </nav>
     </div>
-  </nav>
+  </header>
 
-  <main>
-    <section id="projects">
-      <div class="wrap">
-        <p class="eyebrow">Projects</p>
-        <h2>Selected work</h2>
+  <main class="wrap">
+    <div class="intro">
+      <h1>Projects</h1>
+      <p class="bio">Hardware I've designed, wired and tested. Each one covers the problem, what I built, and how it turned out.</p>
+    </div>
 
-        <div class="project-grid">
-          <a class="project-card" href="#project-1">
-            <figure class="media ratio-4x3"><img src="guard_it_image.png" alt="Theft-Deterrent Security System" /></figure>
-            <h3>Theft-Deterrent Security System</h3>
-            <span class="when">Jul 2025 – Aug 2025</span>
-            <div class="chips" style="margin-top:10px"><span class="chip accent">Summer program</span><span class="chip">CAD</span><span class="chip">Circuit design</span></div>
-          </a>
-        </div>
-
-        <!-- =====================================================
-             PROJECT 1  (copy this whole <article> to add a project)
-             ===================================================== -->
-        <article class="project" id="project-1">
-          <div class="project-title">
-            <div>
-              <p class="eyebrow">Project 01 · Summer program / Team of 5</p>
-              <h2>Theft-Deterrent Security System</h2>
-            </div>
-            <span class="when">Jul 2025 – Aug 2025</span>
-          </div>
-
-          <figure class="media ratio-16x9 project-hero">
-            <img src="guard_it_image.png" alt="Theft-Deterrent Security System" />
-          </figure>
-
-          <div class="project-layout">
-            <aside class="project-meta">
-              <dl>
-                <div><dt>My role</dt><dd>CAD, Mechanical, Electrical lead</dd></div>
-                <div><dt>Timeframe</dt><dd>Jul 2025 – Aug 2025</dd></div>
-                <div><dt>Tools</dt><dd><div class="chips"><span class="chip">OnShape</span><span class="chip">Circuit design</span><span class="chip">Oscilloscope</span><span class="chip">Raspberry Pi</span></div></dd></div>
-              </dl>
-            </aside>
-
-            <div class="project-body">
-              <div class="block">
-                <h3><span class="num">01</span> My role &amp; contribution</h3>
-                <p>I owned the CAD and co-owned the wiring on a five-person team: I designed the full device in OnShape and split the wiring of the entire system with one teammate, while my teammates wrote the software.</p>
-                <ul style="padding-left:18px;margin-top:10px">
-                  <li>CAD: I did all of the CAD for the product in OnShape, designing the physical device that houses the system.</li>
-                  <li>Wiring: I split the wiring of the full system with one teammate, connecting the Raspberry Pi, camera, alarm, and flashing light into one working product.</li>
-                  <li>Research & pitch: Alongside my teammates, I helped validate demand through surveys and interviews and pitch the product as a startup venture.</li>
-                </ul>
-              </div>
-
-              <div class="block">
-                <h3><span class="num">02</span> Problem &amp; constraints</h3>
-                <p>People often have to leave their belongings unattended in places like libraries, cafés, or airports, with no way of knowing if someone takes them. We set out to build an affordable device that watches over your things and alerts you the moment someone gets too close or takes an item. The challenge was building a fully working prototype that customers would actually want in under three weeks, along with a plan to grow it into a company.</p>
-                <div class="constraints">
-                  <div><strong>Requirement</strong>Fully working prototype that customers were willing to adopt</div>
-                 <div><strong>Timeline</strong>Under 3 weeks from start to finished prototype</div>
-                 <div><strong>Cost</strong>$76.55 prototype, projected $17.80 per unit at scale</div>
-                 <div><strong>Business plan</strong>6-year financial forecast showing how the company would scale</div>
-              </div>
-              </div>
-
-              <div class="block">
-                <h3><span class="num">03</span> Process &amp; technical details</h3>
-                <p>We started from the program's theme of "connecting with one another," narrowed hundreds of ideas down to one, and then I designed the device's casing around a Raspberry Pi, refining it through several rounds of fit issues until it held every component cleanly.</p>
-                <ol class="steps">
-                  <li><strong>Research &amp; concepts</strong> — Each of us brainstormed 50 ideas around the program's theme. We discussed them as a group and used a decision matrix to choose the theft-deterrent device.</li>
-                  <li><strong>Design</strong> — We first chose the Raspberry Pi and the components it would run. We originally wanted a small, slim device, but decided a larger, more intimidating one would deter theft better. I designed a mounting layer on top of the Raspberry Pi to hold every component, with openings in the casing for the LED and camera. I split the case into three parts: a main casing for five faces, a mounting layer for all the components, and a lid as the final face. This kept the design simple and easy for the team to build around.</li>
-                  <li><strong>Iteration</strong> — My first design used two forward-angled cameras for about 180° of view. For the prototype, we switched to one internally mounted camera and a webcam mounted on the back. Because I fit the case tightly to the Raspberry Pi's shape, early versions blocked some ports, including the microSD slot we needed. I went through several iterations to fix the fit until the casing worked well.</li>
-                  <li><strong>Build &amp; test</strong> — We 3D printed the casing, and I split the wiring of the full system with one teammate, connecting the Raspberry Pi, cameras, alarm, and LED inside the case. We tested the prototype in a restaurant, across our dorm building, and outdoors. In each setting, we walked past it at a distance, walked toward it, reached for it, and picked it up and shook it, while monitoring everything through the app to confirm that push notifications and the live camera feed worked when they were needed.</li>
-                  <li><strong>Validation</strong> — Once the prototype and financials were done, we surveyed our program cohort and friends and posted on Reddit to gauge how well the product met people's needs and whether they would use it.</li>
-                </ol>
-                <div class="gallery">
-                  <figure>
-                    <div class="media ratio-4x3"><img src="guard_it_cad.png" alt="GuardIt CAD model" /></div>
-                    <figcaption>Final prototype CAD - Isometric view</figcaption>
-                  </figure>
-                  <figure>
-                    <div class="media ratio-4x3"><img src="guard_it_app.png" alt="GuardIt App" /></div>
-                    <figcaption>App UI's</figcaption>
-                  </figure>
-                  <figure class="wide">
-                    <div class="media ratio-16x9">
-                      <iframe width="560" height="315" src="https://www.youtube.com/embed/DiaAiz0wM8o?si=aM0Hl4Mmmp1xM6IB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
-                    <figcaption>GuardIt marketing video</figcaption>
-                  </figure>
-                </div>
-              </div>
-
-              <div class="block">
-                <h3><span class="num">04</span> Results &amp; impact</h3>
-                <div class="metrics">
-                  <div class="metric"><div class="big">&lt;3 wks</div><div class="label">From idea to working prototype</div></div>
-                  <div class="metric"><div class="big">−77%</div><div class="label">Unit cost at scale ($76.55 → $17.80)</div></div>
-                  <div class="metric"><div class="big">3</div><div class="label">Real-world test environments</div></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
-      </div>
+    <section class="sec">
+      <h2>All projects</h2>
+      <!-- Add a row here for each new project -->
+      <ul class="rows">
+        <li><a href="#project-1">Theft-Deterrent Security System</a><span class="right">Jul – Aug 2025</span></li>
+      </ul>
     </section>
+
+    <!-- PROJECT 1  (copy from here to the next comment to add a project) -->
+    <article id="project-1">
+      <div class="intro" style="padding-top:56px">
+        <h1>Theft-Deterrent Security System</h1>
+        <p class="sub">Summer program · Team of 5 · Jul – Aug 2025</p>
+        <figure class="case-hero">
+          <img class="light-only" src="guard_it_cad_light.png" alt="CAD render of the GuardIt casing, isometric view" />
+          <img class="dark-only" src="guard_it_cad_dark.png" alt="CAD render of the GuardIt casing, isometric view" />
+        </figure>
+      </div>
+
+      <section class="sec">
+        <h2>Overview</h2>
+        <dl class="facts">
+          <div><dt>My role</dt><dd>CAD, mechanical and electrical lead</dd></div>
+          <div><dt>Timeframe</dt><dd>Jul 2025 – Aug 2025</dd></div>
+          <div><dt>Team</dt><dd>5 people</dd></div>
+          <div><dt>Tools</dt><dd>OnShape, circuit design, oscilloscope, Raspberry Pi</dd></div>
+        </dl>
+      </section>
+
+      <section class="sec">
+        <h2>Exploded view</h2>
+        <p>The real parts from my Onshape assembly, taken apart one layer at a time. The mounting layer is the piece that made the design work: one printed plate that holds every component above the Raspberry Pi.</p>
+        <figure class="explode" data-model="assets/models/guardit.glb" tabindex="0" aria-label="Exploded diagram. Use the buttons, or the left and right arrow keys, to step through it.">
+          <div class="explode-stage" role="img" aria-label="Exploded diagram of the GuardIt device: main casing at the bottom, then the Raspberry Pi 4, the mounting layer, the camera, GPS, IMU, buzzer and LED, and the lid on top. The standoffs between layers come apart too.">
+            <svg aria-hidden="true"></svg>
+            <p class="explode-status">Loading 3D model…</p>
+          </div>
+          <figcaption class="explode-bar">
+            <span class="explode-step" aria-live="polite">Step 0 of 4 · Assembled</span>
+            <span class="explode-controls">
+              <button type="button" data-act="prev" aria-label="Previous step">←</button>
+              <button type="button" data-act="play">Play</button>
+              <button type="button" data-act="next" aria-label="Next step">→</button>
+              <button type="button" data-act="replay">Replay</button>
+            </span>
+          </figcaption>
+        </figure>
+      </section>
+
+      <section class="sec">
+        <h2>My role</h2>
+        <div>
+          <p>I owned the CAD and co-owned the wiring on a five-person team: I designed the full device in OnShape and split the wiring of the entire system with one teammate, while my teammates wrote the software.</p>
+          <ul style="margin-top:12px;padding-left:18px">
+            <li><strong>CAD:</strong> I did all of the CAD for the product in OnShape, designing the physical device that houses the system.</li>
+            <li style="margin-top:6px"><strong>Wiring:</strong> I split the wiring of the full system with one teammate, connecting the Raspberry Pi, camera, IMU, alarm, and flashing light into one working product.</li>
+            <li style="margin-top:6px"><strong>Research &amp; pitch:</strong> Alongside my teammates, I helped validate demand through surveys and interviews and pitch the product as a startup venture.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="sec">
+        <h2>Problem</h2>
+        <div>
+          <p>People often have to leave their belongings unattended in places like libraries, cafés, or airports, with no way of knowing if someone takes them. We set out to build an affordable device that watches over your things and alerts you the moment someone gets too close or takes an item. The challenge was building a fully working prototype that customers would actually want in under three weeks, along with a plan to grow it into a company.</p>
+          <dl class="facts" style="margin-top:20px">
+            <div><dt>Requirement</dt><dd>Fully working prototype that customers were willing to adopt</dd></div>
+            <div><dt>Timeline</dt><dd>Under 3 weeks from start to finished prototype</dd></div>
+            <div><dt>Cost</dt><dd>$76.55 prototype, projected $17.80 per unit at scale</dd></div>
+            <div><dt>Business plan</dt><dd>6-year financial forecast showing how the company would scale</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="sec">
+        <h2>Process</h2>
+        <div>
+          <p>We started from the program's theme of "connecting with one another," narrowed hundreds of ideas down to one, and then I designed the device's casing around a Raspberry Pi, refining it through several rounds of fit issues until it held every component cleanly.</p>
+          <ol class="steps">
+            <li><strong>Research &amp; concepts</strong> Each of us brainstormed 50 ideas around the program's theme. We discussed them as a group and used a decision matrix to choose the theft-deterrent device.</li>
+            <li><strong>Design</strong> We first chose the Raspberry Pi and the components it would run. We originally wanted a small, slim device, but decided a larger, more intimidating one would deter theft better. Besides the camera, we added an IMU so the device can tell from its own acceleration when it is picked up or moved, which is how it knows something is being stolen. I designed a mounting layer on top of the Raspberry Pi to hold every component, with openings in the casing for the LED and camera. I split the case into three parts: a main casing for five faces, a mounting layer for all the components, and a lid as the final face. This kept the design simple and easy for the team to build around.</li>
+            <li><strong>Iteration</strong> My first design used two forward-angled cameras for about 180° of view. For the prototype, we switched to one internally mounted camera and a webcam mounted on the back. Because I fit the case tightly to the Raspberry Pi's shape, early versions blocked some ports, including the microSD slot we needed. I went through several iterations to fix the fit until the casing worked well.</li>
+            <li><strong>Build &amp; test</strong> We 3D printed the casing, and I split the wiring of the full system with one teammate, connecting the Raspberry Pi, cameras, IMU, alarm, and LED inside the case. We tested the prototype in a restaurant, across our dorm building, and outdoors. In each setting, we walked past it at a distance, walked toward it, reached for it, and picked it up and shook it, while monitoring everything through the app to confirm that push notifications and the live camera feed worked when they were needed.</li>
+            <li><strong>Validation</strong> Once the prototype and financials were done, we surveyed our program cohort and friends and posted on Reddit to gauge how well the product met people's needs and whether they would use it.</li>
+          </ol>
+          <div class="gallery">
+            <figure class="media">
+              <img src="guard_it_image.png" alt="GuardIt CAD model" />
+              <figcaption>Final prototype presentation</figcaption>
+            </figure>
+            <figure class="media">
+              <img src="guard_it_app.png" alt="GuardIt app screens" />
+              <figcaption>GuardIt app</figcaption>
+            </figure>
+            <figure class="wide">
+              <div class="video">
+                <iframe src="https://www.youtube.com/embed/DiaAiz0wM8o?si=aM0Hl4Mmmp1xM6IB" title="GuardIt marketing video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              </div>
+              <figcaption>Marketing video</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec">
+        <h2>Results</h2>
+        <div class="numbers">
+          <div><span class="big">&lt;3 weeks</span><span class="what">From idea to working prototype</span></div>
+          <div><span class="big">−77%</span><span class="what">Unit cost at scale ($76.55 → $17.80)</span></div>
+          <div><span class="big">3</span><span class="what">Real-world test environments</span></div>
+        </div>
+      </section>
+    </article>
+    <!-- END PROJECT 1 -->
   </main>
 
   <footer>
     <div class="wrap">
-      <span>© <span id="year"></span> [Your Name]</span>
-      <a href="#top" class="to-top">Back to top ↑</a>
+      <span>© <span id="year"></span> Ryan Banerjee</span>
+      <a href="#top">Back to top ↑</a>
     </div>
   </footer>
 
   <div class="lightbox" id="lightbox" role="dialog" aria-label="Image preview"><img alt="" /></div>
   <script src="script.js"></script>
+  <script type="module" src="assets/explode.js"></script>
 </body>
 </html>
