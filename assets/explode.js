@@ -26,10 +26,7 @@ function init(fig) {
   const STEP_NAMES = ["Assembled", "Lid off", "Camera, GPS, IMU, buzzer & LED out", "Mounting layer out", "Raspberry Pi out"];
   const LAST = STEP_NAMES.length - 1;
 
-  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-  renderer.outputColorSpace = THREE.SRGBColorSpace;
-  stage.prepend(renderer.domElement);
+  let renderer;
 
   const scene = new THREE.Scene();
   scene.add(new THREE.AmbientLight(0xffffff, 1.4));
@@ -55,16 +52,42 @@ function init(fig) {
   const groups = [];
   let step = 0, playing = false, timer = 0, frame = 0;
 
-  new GLTFLoader().setMeshoptDecoder(MeshoptDecoder).load(fig.dataset.model, gltf => {
+  let ready = false;
+
+  // Setup pauses for a frame every 30ms so the page never locks up while the model is built.
+  let lastYield = 0;
+  const breathe = async () => {
+    if (performance.now() - lastYield < 30) return;
+    await new Promise(r => setTimeout(r));
+    lastYield = performance.now();
+  };
+
+  new IntersectionObserver(([e], io) => {
+    if (!e.isIntersecting) return;
+    io.disconnect();
+    new GLTFLoader().setMeshoptDecoder(MeshoptDecoder).load(fig.dataset.model, gltf => build(gltf).catch(fail), undefined, fail);
+  }, { rootMargin: "800px 0px" }).observe(stage);
+
+  function fail(err) {
+    console.error(err);
+    status.textContent = "The 3D model couldn't load. The CAD render at the top of the page shows the same design.";
+  }
+
+  async function build(gltf) {
+    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    stage.prepend(renderer.domElement);
+    lastYield = performance.now();
     const parts = [...gltf.scene.children[0].children];
     const pivot = new THREE.Group();
     scene.add(pivot);
 
-    GROUPS.forEach(def => {
+    for (const def of GROUPS) {
       const g = new THREE.Group();
-      def.parts.forEach(i => {
+      for (const i of def.parts) {
         const part = parts[i];
-        if (!part) return;
+        if (!part) continue;
         part.traverse(o => {
           if (!o.isMesh) return;
           const c = o.material.color;
@@ -74,38 +97,49 @@ function init(fig) {
           o.add(new THREE.LineSegments(new THREE.EdgesGeometry(o.geometry, big ? 30 : 50), big ? inkLine : fineLine));
         });
         g.add(part);
-      });
+        await breathe();
+      }
       pivot.add(g);
       groups.push({ ...def, obj: g, t: 0, from: 0, to: 0 });
-    });
+    }
 
     const box = new THREE.Box3().setFromObject(pivot);
     pivot.position.sub(box.getCenter(new THREE.Vector3()));
     const GAP = 0.016;
     const up = new THREE.Vector3(0, 1, 0).addScaledVector(viewDir, -viewDir.y).normalize();
+    const right = new THREE.Vector3(0, 1, 0).cross(viewDir).normalize();
     scene.updateMatrixWorld(true);
-    const span = g => {
-      let lo = Infinity, hi = -Infinity;
-      const p = new THREE.Vector3();
-      g.obj.traverse(o => {
-        if (!o.isMesh) return;
+    const p = new THREE.Vector3();
+    const eachVertex = async (g, fn) => {
+      const meshes = [];
+      g.obj.traverse(o => o.isMesh && meshes.push(o));
+      for (const o of meshes) {
         const pos = o.geometry.attributes.position;
-        for (let i = 0; i < pos.count; i++) {
-          const d = p.fromBufferAttribute(pos, i).applyMatrix4(o.matrixWorld).dot(up);
-          if (d < lo) lo = d;
-          if (d > hi) hi = d;
-        }
-      });
-      return [lo, hi];
+        for (let i = 0; i < pos.count; i++) fn(p.fromBufferAttribute(pos, i).applyMatrix4(o.matrixWorld));
+        await breathe();
+      }
     };
+    for (const g of groups) {
+      let lo = Infinity, hi = -Infinity;
+      await eachVertex(g, v => { const d = v.dot(up); if (d < lo) lo = d; if (d > hi) hi = d; });
+      g.lo = lo; g.hi = hi;
+      if (!g.label) continue;
+      // Leader-line anchor: the rightmost on-screen point of the part, near its middle height.
+      const mid = (lo + hi) / 2, band = (hi - lo) * 0.2;
+      let best = -Infinity;
+      g.anchor = new THREE.Vector3();
+      await eachVertex(g, v => {
+        const r = v.dot(right);
+        if (r > best && Math.abs(v.dot(up) - mid) <= band) { best = r; g.anchor.copy(v); }
+      });
+      g.obj.worldToLocal(g.anchor);
+    }
     let top = null;
     [...groups].reverse().forEach(g => {
-      const [lo, hi] = span(g);
-      g.lift = top === null ? 0 : (top + GAP - lo) / up.y;
-      top = hi + g.lift * up.y;
+      g.lift = top === null ? 0 : (top + GAP - g.lo) / up.y;
+      top = g.hi + g.lift * up.y;
     });
 
-    paint();
     groups.filter(g => g.label).forEach(g => {
       g.labelEl = document.createElement("span");
       g.labelEl.className = "explode-label";
@@ -118,17 +152,18 @@ function init(fig) {
       g.dot.setAttribute("r", 3);
       svg.append(g.line, g.dot);
     });
+    camera.position.copy(viewDir).multiplyScalar(2);
+    camera.lookAt(0, 0, 0);
+    await renderer.compileAsync(scene, camera);
+    ready = true;
+    paint();
     fig.classList.add("ready");
     status.remove();
     resize();
-    findAnchors();
     if (reduceMotion) setStep(LAST, true);
     else new IntersectionObserver(([e], io) => { if (e.isIntersecting) { io.disconnect(); play(); } }, { threshold: 0.5 }).observe(stage);
     draw();
-  }, undefined, err => {
-    console.error(err);
-    status.textContent = "The 3D model couldn't load. The CAD render below shows the same design.";
-  });
+  }
 
   function paint() {
     const css = getComputedStyle(root);
@@ -149,7 +184,7 @@ function init(fig) {
   const share = () => (stage.clientWidth < 700 ? 0.58 : 0.64);
   function resize() {
     const w = stage.clientWidth, h = stage.clientHeight;
-    if (!w || !groups.length) return;
+    if (!w || !ready) return;
     renderer.setSize(w, h, false);
     svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
 
@@ -179,30 +214,9 @@ function init(fig) {
   }
   new ResizeObserver(resize).observe(stage);
 
-  function findAnchors() {
-    const saved = groups.map(g => g.obj.position.y);
-    groups.forEach(g => (g.obj.position.y = g.lift));
-    scene.updateMatrixWorld();
-    const ray = new THREE.Raycaster(), ndc = new THREE.Vector2(), c = new THREE.Vector3();
-    groups.filter(g => g.label).forEach(g => {
-      const b = new THREE.Box3().setFromObject(g.obj);
-      b.getCenter(c).project(camera);
-      ndc.y = c.y;
-      g.anchor = null;
-      for (let x = 1; x > -1 && !g.anchor; x -= 0.01) {
-        ndc.x = x;
-        ray.setFromCamera(ndc, camera);
-        const hit = ray.intersectObject(g.obj, true).find(h => h.object.isMesh);
-        if (hit) g.anchor = g.obj.worldToLocal(hit.point.clone());
-      }
-      g.anchor ||= g.obj.worldToLocal(b.getCenter(new THREE.Vector3()));
-    });
-    groups.forEach((g, i) => (g.obj.position.y = saved[i]));
-  }
-
   const v = new THREE.Vector3();
   function draw() {
-    if (!groups.length || !groups[0].labelEl || camera.right === 1) return;
+    if (!ready || camera.right === 1) return;
     const w = stage.clientWidth, h = stage.clientHeight;
     groups.forEach(g => (g.obj.position.y = g.lift * g.t));
     renderer.render(scene, camera);
@@ -231,7 +245,7 @@ function init(fig) {
   const easeInOut = t => (t < 0.5 ? 16 * t ** 5 : 1 - (-2 * t + 2) ** 5 / 2);
   function setStep(n, instant) {
     step = Math.max(0, Math.min(LAST, n));
-    stepText.textContent = `Step ${step} of ${LAST} · ${STEP_NAMES[step]}`;
+    stepText.textContent = `Step ${step} of ${LAST} - ${STEP_NAMES[step]}`;
     groups.forEach(g => { g.from = g.t; g.to = step >= g.step ? 1 : 0; });
     cancelAnimationFrame(frame);
     if (instant || reduceMotion) { groups.forEach(g => (g.t = g.to)); return draw(); }
@@ -268,7 +282,6 @@ function init(fig) {
     pause();
     if (act === "prev") setStep(step - 1);
     if (act === "next") setStep(step + 1);
-    if (act === "replay") { setStep(0, true); play(); }
   }));
   fig.addEventListener("keydown", e => {
     const keys = { ArrowLeft: () => setStep(step - 1), ArrowRight: () => setStep(step + 1), Home: () => setStep(0), End: () => setStep(LAST), r: () => { setStep(0, true); play(); } };
