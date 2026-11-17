@@ -12,8 +12,13 @@
       const current = root.dataset.theme ||
         (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
       const next = current === "dark" ? "light" : "dark";
-      root.dataset.theme = next;
-      try { localStorage.setItem("theme", next); } catch (e) {}
+      const apply = () => {
+        root.dataset.theme = next;
+        try { localStorage.setItem("theme", next); } catch (e) {}
+      };
+      const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (document.startViewTransition && !calm) document.startViewTransition(apply);
+      else apply();
     });
   }
 
